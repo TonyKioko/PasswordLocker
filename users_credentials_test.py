@@ -45,5 +45,13 @@ class TestCredential(unittest.TestCase):
         test_credential.save_credentials()
         found_credential = Credential.find_by_website("eCitizen")
         self.assertEqual(found_credential.account_name, "eCitizen")
+
+    def test_credential_exists(self):
+        self.new_credential.save_credentials()
+        test_credential = Credential("eCitizen","jkl789")
+        test_credential.save_credentials()
+        credential_exists = Credential.credential_exists("eCitizen")
+        self.assertTrue(credential_exists)
+
 if __name__ == '__main__':
     unittest.main()
