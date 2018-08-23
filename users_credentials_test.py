@@ -22,7 +22,10 @@ class TestCredential(unittest.TestCase):
         self.new_credential = Credential("Slack","xyz")   
     def test_credentials(self):
         self.assertEqual(self.new_credential.account_name,"Slack")  
-        self.assertEqual(self.new_credential.account_password,"xyz")  
+        self.assertEqual(self.new_credential.account_password,"xyz")
+    def test_save_credentials(self):
+        self.new_credential.save_credentials() 
+        self.assertEqual(len(Credential.credentials_list), 1) 
 
 if __name__ == '__main__':
     unittest.main()
