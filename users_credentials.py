@@ -31,3 +31,6 @@ class Credential:
             if credential.account_name == account_name:
                 return True
         return False
+    @classmethod
+    def display_all_credentials(cls):
+        return cls.credentials_list
