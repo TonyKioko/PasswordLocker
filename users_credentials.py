@@ -20,3 +20,8 @@ class Credential:
         self.credentials_list.append(self)
     def delete_credentials(self):
         Credential.credentials_list.remove(self)
+    @classmethod
+    def find_by_website(cls,account_name):
+        for credential in cls.credentials_list:
+            if credential.account_name == account_name:
+                return credential
