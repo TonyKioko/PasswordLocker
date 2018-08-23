@@ -33,6 +33,11 @@ class TestCredential(unittest.TestCase):
         self.assertEqual(len(Credential.credentials_list), 2)
     def tearDown(self):
         Credential.credentials_list = []
-
+    def test_delete_credentials(self):
+        self.new_credential.save_credentials()
+        test_credential = Credential("eCitizen","jkl789")
+        test_credential.save_credentials()
+        self.new_credential.delete_credentials()
+        self.assertEqual(len(Credential.credentials_list),1)
 if __name__ == '__main__':
     unittest.main()
