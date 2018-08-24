@@ -21,7 +21,7 @@ def save_credential(credential):
     credential.save_credentials()
 def find_credential(account_name):
     return Credential.find_by_website(account_name)
-def check_credential_exists(account_name)
+def check_credential_exists(account_name):
     return Credential.credential_exists(account_name)
 
 def display_credential():
@@ -33,3 +33,14 @@ def delete_credential(credential):
 
 def main():
     print("Hello Welcome to your Password Locker.")
+
+    while True:
+        print("\n")
+        print("Use these short codes to select an option: CA - to create account , LG - to log in, fc -find a contact, ex - to exit password Locker ")
+        short_code = input().lower()
+    else:
+          print("I really didn't get that. Please use the short codes")
+
+if __name__ == '__main__':
+
+    main()
