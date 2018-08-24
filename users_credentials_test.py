@@ -24,11 +24,6 @@ class TestUser(unittest.TestCase):
 
 class TestCredential(unittest.TestCase):
 
-    # def test_user_exists(self):
-    #     self.new_user = User("Tony","Kioko","abc123")
-    #     self.new_user.save_user()
-    #     user_exists = User.user_exists("Tony")
-    #     self.assertTrue(user_exists)
 
     # def test_authenticate_user(self):
 		
