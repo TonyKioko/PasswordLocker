@@ -12,7 +12,7 @@ def authenticate_user(fname):
     confirm_user = User.user_exists(fname)
     return confirm_user
 
-def make_password(self):
+def make_password():
     password = Credential.automate_password()
     return password
 
@@ -21,7 +21,7 @@ def create_credential(account_name,password):
     return new_credential
 
 def save_credential(credential):
-    credential.save_credentials()
+    Credential.save_credentials(credential)
 def find_credential(account_name):
     return Credential.find_by_website(account_name)
 def check_credential_exists(account_name):
@@ -57,6 +57,54 @@ def main():
             user_name = input("Enter first name: ").strip()
             password = str(input("Enter password: "))
             user_exists = authenticate_user(user_name)
+
+            if user_exists:
+                print(" ")
+                print(f'Welcome {user_name}. Please choose an option to continue.')
+                print(" ")
+                while True:
+                    print("*_"*40)
+                    print('Navigation codes: \n cc-Create new Credential \n sc-Show Your Saved Credentials \n copy-Copy Password \n q-Quit')
+                    print("*_"*40)
+                    short_code = input("Select choice to proceed: ")
+                    if short_code == "q":
+                        print(" ")
+                        print(f"See you soon {user_name}")
+                        break
+                    elif short_code ==  "cc":
+                        print(" ")
+                        print("Enter Credential: ")
+                        website_name = input("Enter  website's name: ").strip()
+                        while True:
+                            print("")
+                            print("Select option for entering a password: \n ep-enter existing password \n gp-Let us generate a password for you \n q-quit")
+                            pass_code = input("Enter an option: ").lower().strip()
+                            if pass_code == "ep":
+                                print(" ")
+                                secret_password = input("Enter password: ")
+                                break
+                            elif pass_code == "gp":
+                                secret_password = make_password()
+                                break
+                            elif pass_code == "q":
+                                break
+                            print("Please enter a valid choice")
+                        save_credential(create_credential(website_name,secret_password))
+                        print(f"Credential Saved For: Website:{website_name} with Password: {secret_password}")
+                    elif short_code == "sc":
+                        print(" ")
+                        if display_credential():
+                            print(" ")
+                            print("Your saved Credentials are displayed below.")
+                            for cred in display_credential():
+                                print(f"Website:{cred.account_name} with Password :{password}")
+                                print(" ")
+
+
+
+
+
+
 
     else:
           print("I really didn't get that. Please use the short codes")
