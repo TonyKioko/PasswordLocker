@@ -1,6 +1,9 @@
 
 import random
 import string
+import pyperclip
+
+global user_list;
 
 class User:
     # pass
@@ -13,9 +16,29 @@ class User:
     def save_user(self):
         User.user_list.append(self)
 
+    @classmethod
+    def user_exists(cls,first_name):
+        for user in cls.user_list:
+            if user.first_name == first_name:
+                return True
+        return False
+
 class Credential:
 
     credentials_list = []
+    # @classmethod
+    # def user_exists(cls,first_name):
+    #     for user in cls.user_list:
+    #         if user.first_name == first_name:
+    #             return True
+    #     return False
+    # @classmethod
+	# def authenticate_user(cls,first_name,password):
+	# 	current_user = ''
+	# 	for user in cls.user_list:
+	# 		if (user.first_name == first_name and user.password == password):
+	# 			current_user = user.first_name
+	# 	return current_user
     def __init__(self,account_name,account_password):
         self.account_name = account_name
         self.account_password = account_password
@@ -24,7 +47,7 @@ class Credential:
 
     def automate_password(length=6, chars=string.ascii_letters + string.digits):
         
-        return ''.join(random.choice(chars) for i in range(length))
+        password = ''.join(random.choice(chars) for i in range(length))
     def delete_credentials(self):
         Credential.credentials_list.remove(self)
     @classmethod

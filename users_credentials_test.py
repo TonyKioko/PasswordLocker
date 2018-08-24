@@ -1,4 +1,5 @@
 import unittest
+import pyperclip
 from users_credentials import User
 from users_credentials import Credential
 
@@ -13,10 +14,35 @@ class TestUser(unittest.TestCase):
     def test_save_user(self):
         self.new_user.save_user()
         self.assertEqual(len(User.user_list),1)
+    def test_user_exists(self):
+        self.new_user = User("Tony","Kioko","abc123")
+        self.new_user.save_user()
+        user_exists = User.user_exists("Tony")
+        self.assertTrue(user_exists)
 
 
 
-class TestCredential(unittest.TestCase):  
+class TestCredential(unittest.TestCase):
+
+    # def test_user_exists(self):
+    #     self.new_user = User("Tony","Kioko","abc123")
+    #     self.new_user.save_user()
+    #     user_exists = User.user_exists("Tony")
+    #     self.assertTrue(user_exists)
+
+    # def test_authenticate_user(self):
+		
+    #     self.new_user = User('Tony','Kioko','abc123')
+    #     self.new_user.save_user()
+    #     next_user = User('Tommy','Kioko','abc123')
+    #     next_user.save_user()
+
+    #     for user in User.users_list:
+    #         if user.first_name == next_user.first_name and user.password == next_user.password:
+    #             current_user = user.first_name
+    #     return current_user
+
+    # self.assertEqual(current_user,Credential.authenticate_user(next_user.password,next_user.first_name))
 
     def setUp(self):
         self.new_credential = Credential("Slack","xyz456")   
@@ -55,6 +81,9 @@ class TestCredential(unittest.TestCase):
 
     def test_display_all_credentials(self):
         self.assertEqual(Credential.display_all_credentials(), Credential.credentials_list)
+
+    # def test_copy_credentials(self):
+
 
 if __name__ == '__main__':
     unittest.main()
