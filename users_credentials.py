@@ -1,4 +1,7 @@
 
+import random
+import string
+
 class User:
     # pass
     user_list = []
@@ -18,6 +21,10 @@ class Credential:
         self.account_password = account_password
     def save_credentials(self):
         self.credentials_list.append(self)
+
+    def automate_password(length=6, chars=string.ascii_letters + string.digits):
+        
+        return ''.join(random.choice(chars) for i in range(length))
     def delete_credentials(self):
         Credential.credentials_list.remove(self)
     @classmethod
