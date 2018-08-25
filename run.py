@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.6
-from users_credentials import User
-from users_credentials import Credential
+from password_manager import User
+from password_manager import Credential
 import datetime
 
 def create_user(fname,lname,password):
@@ -55,6 +55,7 @@ def main():
             confirm_password = input("Confrim password: ").strip()
             if password == confirm_password:
                 save_user(create_user(first_name, last_name, password))
+                print("")
                 print(f"New Account, {first_name} {last_name} using password: {password} created on {datetime.datetime.now()} ")
                 print(f'{first_name}, you can proceed to login and save your credentials')
             else:
@@ -73,10 +74,10 @@ def main():
                 print(f"Logged in as {user_name}.")
                 print(" ")
                 while True:
-                    print('Use the shortcodes: \n cc-Create new Credential ||  sc-Show Your Saved Credentials \n cp-Copy to Password   ||  q-Quit')
+                    print('Use the shortcodes: \n cc-Create new Credential ||  sc-Show Your Saved Credentials \n cp-Copy to Password   ||  lu-Logout')
                     print("*_"*40)
                     short_code = input("Select choice to proceed: ").lower()
-                    if short_code == "q":
+                    if short_code == "lu":
                         print(" ")
                         print(f"Exiting application... See you soon {user_name}")
                         break
@@ -110,6 +111,7 @@ def main():
                             print(" ")
                             print("Your saved Credentials are displayed below.")
                             for cred in display_credential():
+                                print("")
                                 print(f"Website:{cred.account_name}, login name: {cred.user_name}, with Password :{cred.account_password}")
                                 print(" ")
                         else:

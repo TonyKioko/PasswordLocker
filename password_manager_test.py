@@ -1,7 +1,7 @@
 import unittest
 import pyperclip
-from users_credentials import User
-from users_credentials import Credential
+from password_manager import User
+from password_manager import Credential
 
 class TestUser(unittest.TestCase):
     def setUp(self):
@@ -74,7 +74,7 @@ class TestCredential(unittest.TestCase):
         test_credential.save_credentials()
         credential_exists = Credential.credential_exists("Slack")
         self.assertTrue(credential_exists)
-    # 
+    #
     # def test_display_all_credentials(self):
     #     self.new_credential.save_credentials()
     #     test_credential = Credential("Slack","Tonykm","jkl789")
