@@ -37,6 +37,7 @@ def delete_credential(credential):
     credential.delete_credentials()
 
 
+
 def main():
     print("Hello and Welcome to your Password Locker.")
 
@@ -121,7 +122,12 @@ def main():
             else:
                 print(" ")
                 print("***Invalid Login details. Make sure you have a User Account***")   
+        elif short_code == "ex":
+            print ("EXITING APPLICATION......")
+            print ("\n")
+            break
 
+        
         else:
             print("I really didn't get that. Please use the short codes")
 

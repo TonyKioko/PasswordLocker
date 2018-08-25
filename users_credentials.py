@@ -48,7 +48,7 @@ class Credential:
     def automate_password(length=6, chars=string.ascii_letters + string.digits):
         
         auto_password = ''.join(random.choice(chars) for i in range(length))
-        return password
+        return auto_password
     def delete_credentials(self):
         Credential.credentials_list.remove(self)
     @classmethod
