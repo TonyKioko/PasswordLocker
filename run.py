@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.6
 from users_credentials import User
 from users_credentials import Credential
+import datetime
 
 def create_user(fname,lname,password):
     new_user = User(fname,lname,password)
@@ -41,25 +42,25 @@ def main():
 
     while True:
         print("\n")
-        print("Use these short codes to select an option: ca - to create account , li - to log in, ex - to exit password Locker ")
+        print("PLEASE USE THE SHORTCODES: cu - to CREATE USER ACCOUNT , lg - to LOGIN to your existing account, ex - to EXIT password Locker ")
         short_code = input().lower()
         print('\n')
 
-        if short_code == 'ca':
-            print("Create an Account")
-            first_name = input('Enter your first name - ').strip()
-            last_name = input('Enter your last name - ').strip()
-            password = input('Enter your password - ').strip()
-            confirm_password = input("Confrim password: ")
+        if short_code == 'cu':
+            print("Create an Account to use the Password Locker App")
+            first_name = input("Enter your first name: ").strip()
+            last_name = input("Enter your last name: ").strip()
+            password = input("Enter your password: ").strip()
+            confirm_password = input("Confrim password: ").strip()
             if password == confirm_password:
                 save_user(create_user(first_name, last_name, password))
-                print(f'New Account Created for: {first_name} {last_name} using password: {password}')
+                print(f"New User, {first_name} {last_name} using password: {password} created at {datetime.datetime.now()} ")
                 print(f'{first_name}, you can proceed to login and save your credentials')
             else:
                 print("***Your passwords do not match. Please try again.***")
 
 
-        elif short_code == "li":
+        elif short_code == "lg":
             print("*"*40)
             print("Enter details to access your account")
             user_name = input("Enter first name: ").strip()
