@@ -77,7 +77,16 @@ class TestCredential(unittest.TestCase):
     def test_display_all_credentials(self):
         self.assertEqual(Credential.display_all_credentials(), Credential.credentials_list)
 
-    # def test_copy_credentials(self):
+    def test_copy_credentials(self):
+        self.new_credential.save_credentials()
+        test_credential = Credential("eCitizen","jkl789")
+        test_credential.save_credentials()
+    def test_copy_password(self):
+        self.new_credential.save_credentials()
+        Credential.copy_password("jkl789")
+        self.assertEqual(self.new_credential.account_password,pyperclip.paste())
+
+
 
 
 if __name__ == '__main__':

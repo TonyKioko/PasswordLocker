@@ -77,7 +77,7 @@ def main():
                         website_name = input("Enter  website's name: ").strip()
                         while True:
                             print("")
-                            print("Select option for entering a password: \n ep-enter existing password \n gp-Let us generate a password for you \n q-quit")
+                            print("Select option for entering a password: \n ep-enter existing password | gp-Let us generate a password for you | q-quit")
                             pass_code = input("Enter an option: ").lower().strip()
                             if pass_code == "ep":
                                 print(" ")
@@ -99,6 +99,10 @@ def main():
                             for cred in display_credential():
                                 print(f"Website:{cred.account_name} with Password :{password}")
                                 print(" ")
+                        print(f"Your credential list is empty. Please add your Credentials")
+                    elif short_code == "cp":
+                        print(" ")
+                        
 
 
 

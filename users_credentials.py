@@ -65,3 +65,7 @@ class Credential:
     @classmethod
     def display_all_credentials(cls):
         return cls.credentials_list
+    @classmethod
+    def copy_password(cls,account_name):
+        credential_found = Credential.find_by_website(account_name)
+        return pyperclip.copy(credential_found.account_password)
