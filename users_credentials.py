@@ -39,8 +39,9 @@ class Credential:
 	# 		if (user.first_name == first_name and user.password == password):
 	# 			current_user = user.first_name
 	# 	return current_user
-    def __init__(self,account_name,account_password):
+    def __init__(self,account_name,user_name,account_password):
         self.account_name = account_name
+        self.user_name = user_name
         self.account_password = account_password
     def save_credentials(self):
         Credential.credentials_list.append(self)

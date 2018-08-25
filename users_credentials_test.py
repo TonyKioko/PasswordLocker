@@ -26,7 +26,7 @@ class TestCredential(unittest.TestCase):
 
 
     # def test_authenticate_user(self):
-		
+
     #     self.new_user = User('Tony','Kioko','abc123')
     #     self.new_user.save_user()
     #     next_user = User('Tommy','Kioko','abc123')
@@ -40,51 +40,52 @@ class TestCredential(unittest.TestCase):
     # self.assertEqual(current_user,Credential.authenticate_user(next_user.password,next_user.first_name))
 
     def setUp(self):
-        self.new_credential = Credential("Slack","xyz456")   
+        self.new_credential = Credential("Slack","Tonykm","xyz456")
     def test_credentials(self):
-        self.assertEqual(self.new_credential.account_name,"Slack")  
+        self.assertEqual(self.new_credential.account_name,"Slack")
+        self.assertEqual(self.new_credential.user_name,"Tonykm")
         self.assertEqual(self.new_credential.account_password,"xyz456")
     def test_save_credentials(self):
-        self.new_credential.save_credentials() 
-        self.assertEqual(len(Credential.credentials_list), 1) 
+        self.new_credential.save_credentials()
+        self.assertEqual(len(Credential.credentials_list), 1)
     def test_save_multiple_credentials(self):
         self.new_credential.save_credentials()
-        test_credential = Credential("eCitizen","jkl789")
+        test_credential = Credential("Slack","Tonykm","jkl789")
         test_credential.save_credentials()
         self.assertEqual(len(Credential.credentials_list), 2)
     def tearDown(self):
         Credential.credentials_list = []
     def test_delete_credentials(self):
         self.new_credential.save_credentials()
-        test_credential = Credential("eCitizen","jkl789")
+        test_credential = Credential("Slack","Tonykm","jkl789")
         test_credential.save_credentials()
         self.new_credential.delete_credentials()
         self.assertEqual(len(Credential.credentials_list),1)
     def test_find_credential_by_website(self):
         self.new_credential.save_credentials()
-        test_credential = Credential("eCitizen","jkl789")
+        test_credential = Credential("Slack","Tonykm","jkl789")
         test_credential.save_credentials()
-        found_credential = Credential.find_by_website("eCitizen")
-        self.assertEqual(found_credential.account_name, "eCitizen")
+        found_credential = Credential.find_by_website("Slack")
+        self.assertEqual(found_credential.account_name, "Slack")
 
     def test_credential_exists(self):
         self.new_credential.save_credentials()
-        test_credential = Credential("eCitizen","jkl789")
+        test_credential = Credential("Slack","Tonykm","jkl789")
         test_credential.save_credentials()
-        credential_exists = Credential.credential_exists("eCitizen")
+        credential_exists = Credential.credential_exists("Slack")
         self.assertTrue(credential_exists)
-
-    def test_display_all_credentials(self):
-        self.new_credential.save_credentials()
-        test_credential = Credential("eCitizen","jkl789")
-        test_credential.save_credentials()
-        self.assertEqual(len(Credential.display_all_credentials(test_credential.account_name)),2)
+    # 
+    # def test_display_all_credentials(self):
+    #     self.new_credential.save_credentials()
+    #     test_credential = Credential("Slack","Tonykm","jkl789")
+    #     test_credential.save_credentials()
+    #     self.assertEqual(len(Credential.display_all_credentials(test_credential.account_name)),2)
 
         # self.assertEqual(Credential.display_all_credentials(), Credential.credentials_list)
 
     def test_copy_credentials(self):
         self.new_credential.save_credentials()
-        test_credential = Credential("eCitizen","jkl789")
+        test_credential = Credential("eCitizen","Tonykm","jkl789")
         test_credential.save_credentials()
     # def test_copy_password(self):
     #     self.new_credential.save_credentials()
