@@ -54,7 +54,7 @@ def main():
             confirm_password = input("Confrim password: ").strip()
             if password == confirm_password:
                 save_user(create_user(first_name, last_name, password))
-                print(f"New User, {first_name} {last_name} using password: {password} created at {datetime.datetime.now()} ")
+                print(f"New Account, {first_name} {last_name} using password: {password} created on {datetime.datetime.now()} ")
                 print(f'{first_name}, you can proceed to login and save your credentials')
             else:
                 print("***Your passwords do not match. Please try again.***")
@@ -69,29 +69,29 @@ def main():
 
             if user_exists:
                 print(" ")
-                print(f'Welcome {user_name}. Please choose an option to continue.')
+                print(f"Logged in as {user_name}.")
                 print(" ")
                 while True:
-                    print('Use the shortcodes to manouvre: \n cc-Create new Credential ||  sc-Show Your Saved Credentials \n cp-Copy to Password   ||  q-Quit')
+                    print('Use the shortcodes: \n cc-Create new Credential ||  sc-Show Your Saved Credentials \n cp-Copy to Password   ||  q-Quit')
                     print("*_"*40)
                     short_code = input("Select choice to proceed: ").lower()
                     if short_code == "q":
                         print(" ")
-                        print(f"See you soon {user_name}")
+                        print(f"Exiting application... See you soon {user_name}")
                         break
                     elif short_code ==  "cc":
                         print(" ")
-                        print("Enter Credential: ")
+                        print("Create Credential: ")
                         website_name = input("Enter  website's name: ").strip()
                         while True:
                             print("")
-                            print("Select option for entering a password: \n ep-enter existing password | gp-Let us generate a password for you | q-quit")
-                            pass_code = input("Enter an option: ").lower().strip()
-                            if pass_code == "ep":
+                            print("Password Options: \n 1-enter own password | 2-Let us generate a password for you | q-quit")
+                            pass_code = str(input("Enter an option: ")).lower().strip()
+                            if pass_code == "1":
                                 print(" ")
                                 secret_password = input("Enter password: ")
                                 break
-                            elif pass_code == "gp":
+                            elif pass_code == "2":
                                 secret_password = make_password()
                                 break
                             elif pass_code == "q":
@@ -118,7 +118,9 @@ def main():
                         print("Please selected a valid code to proceed")
                 else:
                     print("Incorrect details. Please use the short codes to proceed.")
-               
+            else:
+                print(" ")
+                print("***Invalid Login details. Make sure you have a User Account***")   
 
         else:
             print("I really didn't get that. Please use the short codes")
