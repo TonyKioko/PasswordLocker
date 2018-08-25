@@ -35,7 +35,8 @@ def copy_password(account_name):
 
 def delete_credential(credential):
     credential.delete_credentials()
-
+def copy_password(account_name):
+    return Credential.copy_password(account_name)
 
 
 def main():
@@ -57,7 +58,7 @@ def main():
                 save_user(create_user(first_name, last_name, password))
                 print("")
                 print(f"New Account, {first_name} {last_name} using password: {password} created on {datetime.datetime.now()} ")
-                print(f'{first_name}, you can proceed to login and save your credentials')
+                print(f"{first_name}, you can now proceed to login and save your credentials")
             else:
                 print("***Your passwords do not match. Please try again.***")
 
@@ -118,8 +119,9 @@ def main():
                             print(f"Your credential list is empty. Please add your Credentials")
                     elif short_code == "cp":
                         print(" ")
-                        selected_website = print("Select website for password to be copied: ")
+                        selected_website = input("Select website for password to be copied: ").strip()
                         copy_password(selected_website)
+                        
                     else:
                         print("Please selected a valid code to proceed")
                 else:

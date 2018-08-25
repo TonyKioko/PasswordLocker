@@ -3,8 +3,6 @@ import random
 import string
 import pyperclip
 
-global user_list;
-
 class User:
     # pass
     user_list = []
@@ -46,8 +44,9 @@ class Credential:
     def save_credentials(self):
         Credential.credentials_list.append(self)
 
-    def automate_password(length=6, chars=string.ascii_letters + string.digits):
+    def automate_password(chars=string.ascii_letters + string.digits):
 
+        length = int(input("Enter length of password: "))
         auto_password = ''.join(random.choice(chars) for i in range(length))
         return auto_password
     def delete_credentials(self):
@@ -66,7 +65,8 @@ class Credential:
     @classmethod
     def display_all_credentials(cls):
         return cls.credentials_list
-    # @classmethod
-    # def copy_password(cls,account_name):
-    #     credential_found = Credential.find_by_website(account_name)
-    #     return pyperclip.copy(credential_found.account_password)
+    @classmethod
+    def copy_password(cls,account_name):
+        credential_found = Credential.find_by_website(account_name)
+        return pyperclip.copy(credential_found.account_password)
+        print(pyperclip.copy(credential_found.account_password))
