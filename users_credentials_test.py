@@ -81,10 +81,10 @@ class TestCredential(unittest.TestCase):
         self.new_credential.save_credentials()
         test_credential = Credential("eCitizen","jkl789")
         test_credential.save_credentials()
-    def test_copy_password(self):
-        self.new_credential.save_credentials()
-        Credential.copy_password("jkl789")
-        self.assertEqual(self.new_credential.account_password,pyperclip.paste())
+    # def test_copy_password(self):
+    #     self.new_credential.save_credentials()
+    #     Credential.copy_password("jkl789")
+    #     self.assertEqual(self.new_credential.account_password,pyperclip.paste())
 
 
 

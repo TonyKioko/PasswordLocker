@@ -26,6 +26,7 @@ class User:
 class Credential:
 
     credentials_list = []
+    user_credential_list = []
     # @classmethod
     # def user_exists(cls,first_name):
     #     for user in cls.user_list:
@@ -43,12 +44,12 @@ class Credential:
         self.account_name = account_name
         self.account_password = account_password
     def save_credentials(self):
-        self.credentials_list.append(self)
+        Credential.credentials_list.append(self)
 
     def automate_password(length=6, chars=string.ascii_letters + string.digits):
         
-        password = ''.join(random.choice(chars) for i in range(length))
-        return password
+        auto_password = ''.join(random.choice(chars) for i in range(length))
+        return auto_password
     def delete_credentials(self):
         Credential.credentials_list.remove(self)
     @classmethod
@@ -63,9 +64,13 @@ class Credential:
                 return True
         return False
     @classmethod
-    def display_all_credentials(cls):
-        return cls.credentials_list
-    @classmethod
-    def copy_password(cls,account_name):
-        credential_found = Credential.find_by_website(account_name)
-        return pyperclip.copy(credential_found.account_password)
+    def display_all_credentials(cls,account_name):
+        user_credential_list = []
+        for cred in cls.credentials_list:
+            if cred.account_name == account_name:
+                user_credential_list.append(cred)
+        return user_credentials_list
+    # @classmethod
+    # def copy_password(cls,account_name):
+    #     credential_found = Credential.find_by_website(account_name)
+    #     return pyperclip.copy(credential_found.account_password)
