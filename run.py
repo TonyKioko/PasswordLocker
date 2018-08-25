@@ -17,8 +17,8 @@ def make_password():
     auto_password = Credential.automate_password()
     return auto_password
 
-def create_credential(account_name,acc_password):
-    new_credential = Credential(account_name,acc_password)
+def create_credential(account_name,user_name,acc_password):
+    new_credential = Credential(account_name,user_name,acc_password)
     return new_credential
 
 def save_credential(credential):
@@ -84,6 +84,7 @@ def main():
                         print(" ")
                         print("Create Credential: ")
                         website_name = input("Enter  website's name: ").strip()
+                        login_name = input("Enter login name on website: ").strip()
                         while True:
                             print("")
                             print("Password Options: \n 1-enter own password | 2-Let us generate a password for you | q-quit")
@@ -99,17 +100,19 @@ def main():
                                 break
                             else:
                                 print("Please enter a valid choice")
-                        save_credential(create_credential(website_name,secret_password))
-                        print(f"Credential Saved For: Website:{website_name} with Password: {secret_password}")
+                        save_credential(create_credential(website_name,login_name,secret_password))
+                        print("")
+                        print(f"*****Credential Saved For: Website: {website_name}, login name: {login_name}, with Password: {secret_password}*****")
+                        print("")
                     elif short_code == "sc":
                         print(" ")
                         if display_credential():
                             print(" ")
                             print("Your saved Credentials are displayed below.")
                             for cred in display_credential():
-                                print(f"Website:{cred.account_name} with Password :{secret_password}")
+                                print(f"Website:{cred.account_name}, login name: {cred.user_name}, with Password :{cred.account_password}")
                                 print(" ")
-                        else:        
+                        else:
                             print(f"Your credential list is empty. Please add your Credentials")
                     elif short_code == "cp":
                         print(" ")
@@ -121,13 +124,13 @@ def main():
                     print("Incorrect details. Please use the short codes to proceed.")
             else:
                 print(" ")
-                print("***Invalid Login details. Make sure you have a User Account***")   
+                print("***Invalid Login details. Make sure you have a User Account***")
         elif short_code == "ex":
             print ("EXITING APPLICATION......")
             print ("\n")
             break
 
-        
+
         else:
             print("I really didn't get that. Please use the short codes")
 

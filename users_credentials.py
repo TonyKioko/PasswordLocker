@@ -12,7 +12,7 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
         self.password = password
-        
+
     def save_user(self):
         User.user_list.append(self)
 
@@ -47,7 +47,7 @@ class Credential:
         Credential.credentials_list.append(self)
 
     def automate_password(length=6, chars=string.ascii_letters + string.digits):
-        
+
         auto_password = ''.join(random.choice(chars) for i in range(length))
         return auto_password
     def delete_credentials(self):
