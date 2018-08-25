@@ -105,7 +105,7 @@ def main():
                             print(" ")
                             print("Your saved Credentials are displayed below.")
                             for cred in display_credential():
-                                print(f"Website:{cred.account_name} with Password :{password}")
+                                print(f"Website:{cred.account_name} with Password :{secret_password}")
                                 print(" ")
                         else:        
                             print(f"Your credential list is empty. Please add your Credentials")

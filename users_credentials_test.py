@@ -75,7 +75,12 @@ class TestCredential(unittest.TestCase):
         self.assertTrue(credential_exists)
 
     def test_display_all_credentials(self):
-        self.assertEqual(Credential.display_all_credentials(), Credential.credentials_list)
+        self.new_credential.save_credentials()
+        test_credential = Credential("eCitizen","jkl789")
+        test_credential.save_credentials()
+        self.assertEqual(len(Credential.display_all_credentials(test_credential.account_name)),2)
+
+        # self.assertEqual(Credential.display_all_credentials(), Credential.credentials_list)
 
     def test_copy_credentials(self):
         self.new_credential.save_credentials()
