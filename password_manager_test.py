@@ -89,12 +89,21 @@ class TestCredential(unittest.TestCase):
         self.new_credential.delete_credentials()
         self.assertEqual(len(Credential.list_of_credentials),1)
     def test_find_credential_by_website(self):
+        '''
+        test_find_credentials_by_website to test if the credentials of a specific website are really saved
+        '''
+        
         self.new_credential.save_credentials()
         test_credential = Credential("Slack","Tonykm","xyz456")
         test_credential.save_credentials()
         found_credential = Credential.find_by_website("Slack")
         self.assertEqual(found_credential.account_name, "Slack")
     def test_credential_exists(self):
+        '''
+        test_credential_exists test case to test if the credentials exists in the
+        list_of_credentials
+        '''
+
         self.new_credential.save_credentials()
         test_credential = Credential("Slack","Tonykm","xyz456")
         test_credential.save_credentials()
@@ -102,6 +111,10 @@ class TestCredential(unittest.TestCase):
         self.assertTrue(credential_exists)
 
     def test_copy_password(self):
+        '''
+        Test to confirm that we are copying the account_password for a specific website
+        '''
+
         self.new_credential.save_credentials()
         test_credential = Credential("Slack","Tonykm","xyz456")
         test_credential.save_credentials()

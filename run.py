@@ -4,38 +4,74 @@ from password_manager import Credential
 import datetime
 
 def create_user(fname,email,password):
+    '''
+    This method allows the creation of new user accounts
+    '''
     new_user = User(fname,email,password)
     return new_user
 
 def save_user(user):
+    '''
+    Function that saves the created user to the list_of_users
+    '''
     User.save_user(user)
 def authenticate_user(fname):
+    '''
+    Function that authenticates if a user has a user account
+    '''
     confirm_user = User.user_exists(fname)
     return confirm_user
+def authenticate_by_email(email):
+    confirm_user1 = User.user_exists_by_email(email)
+    return confirm_user1
 
 def make_password():
+    '''
+    Function that generates a random password for the user
+    '''
     auto_password = Credential.automate_password()
     return auto_password
 
 def create_credential(account_name,user_name,acc_password):
+    '''
+    This function allows the creation of new credential
+    '''
     new_credential = Credential(account_name,user_name,acc_password)
     return new_credential
 
 def save_credential(credential):
+    '''
+    Functions invokes the save_credentials method from class 
+    Credential to add a new_credential to the list of credentials
+    '''
     Credential.save_credentials(credential)
 def find_credential(account_name):
+    '''
+    Function that returns credential for specific website
+    '''
+
     return Credential.find_by_website(account_name)
 def check_credential_exists(account_name):
+    '''
+    Function that checks if credential in the list_of_credentials
+    '''
     return Credential.credential_exists(account_name)
 
 def display_credential():
     return Credential.display_all_credentials()
-def copy_password(account_name):
-    return Credential.copy_password(account_name)
+    '''
+    This function displays all credentials saved by the user
+    '''
 
 def delete_credential(credential):
+    '''
+    Function that deletes a credential from the list of credentials
+    '''
     credential.delete_credentials()
 def copy_password(account_name):
+    '''
+    This function allows user to copy password to clipboard
+    '''
     return Credential.copy_password(account_name)
 
 
@@ -69,7 +105,7 @@ def main():
             user_name = input("Enter first name: ").strip()
             password = str(input("Enter password: "))
             user_exists = authenticate_user(user_name)
-
+    
             if user_exists == True:
                 print(" ")
                 print(f"Logged in as {user_name}.")
@@ -80,7 +116,7 @@ def main():
                     short_code = input("Select choice to proceed: ").lower()
                     if short_code == "lu":
                         print(" ")
-                        print(f"Exiting application... See you soon {user_name}")
+                        print(f"You are now logged out... See you soon {user_name}")
                         break
                     elif short_code ==  "cc":
                         print(" ")
@@ -104,7 +140,7 @@ def main():
                                 print("Please enter a valid choice")
                         save_credential(create_credential(website_name,login_name,secret_password))
                         print("")
-                        print(f"*****  Credential Saved For: Website: {website_name}, login name: {login_name}, with Password: {secret_password}   *****")
+                        print(f"*****   Credential Saved For: Website: {website_name}, login name: {login_name}, with Password: {secret_password}   *****")
                         print("")
                     elif short_code == "sc":
                         print(" ")
