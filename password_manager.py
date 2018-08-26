@@ -69,7 +69,7 @@ class Credential:
         Source: http://stackoverflow.com/a/2257449
         """
 
-        length = int(input("Enter length of password: "))
+        length = int(input("Enter desired length of password: "))
         auto_password = ''.join(random.choice(chars) for i in range(length))
         return auto_password
     def delete_credentials(self):
@@ -102,4 +102,4 @@ class Credential:
         """Method that enables user to copy password for specific website"""
         credential_found = Credential.find_by_website(account_name)
         return pyperclip.copy(credential_found.account_password)
-        print(pyperclip.copy(credential_found.account_password))
+        

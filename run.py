@@ -92,15 +92,17 @@ def main():
             email = input("Enter your email: ").strip()
             password = input("Enter your password: ").strip()
             confirm_password = input("Confrim password: ").strip()
-            if password == confirm_password:
+            while password != confirm_password:
+                print("")
+                print("***Your passwords do not match. Please try again.***")
+                password = input("Enter your password: ").strip()
+                confirm_password = input("Confrim password: ").strip()
+            else:
                 save_user(create_user(user_name, email, password))
                 print("")
-                print(f"New Account, for user {user_name} with email {email} using password: {password} created on {datetime.datetime.now()} ")
+                print(f"New Account for user   {user_name}  with email  {email}  using password: {password}  created on {datetime.datetime.now()} ")
                 print(f"{user_name}, you can now proceed to login and save your credentials")
-            else:
-                print("***Your passwords do not match. Please try again.***")
-
-
+            
         elif short_code == "lg":
             print("*"*40)
             print("Enter details to access your account")
@@ -129,7 +131,7 @@ def main():
                         login_name = input("Enter login name on website: ").strip()
                         while True:
                             print("")
-                            print("Password Options:  1 -enter own password | 2 -Let us generate a password for you | q -quit")
+                            print("****Password Options:  1 -enter own password | 2 -Let us generate a password for you | q -quit")
                             print("")
                             pass_code = str(input("Enter an option: ")).lower().strip()
                             if pass_code == "1":
@@ -162,6 +164,9 @@ def main():
                         print(" ")
                         selected_website = input("Select website for password to be copied: ").strip()
                         copy_password(selected_website)
+                        print("")
+                        print(f"{selected_website} Password copied successfully to clipboard")
+                        print("")
 
                     else:
                         print("Please selected a valid code to proceed")
