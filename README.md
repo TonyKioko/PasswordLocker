@@ -25,7 +25,8 @@ Password Locker is a python application that allows users save all your password
 ## Known Bugs 
 There are no known bugs.
 
-##Future additional features to be considered.
+## Future additional features to be considered.
+
 *Store user credentials in a database.
 *Use encryption algorithims to hash saved passwords.
  
