@@ -10,10 +10,10 @@ class User:
     # pass
     list_of_users = [] # Empty list of users
 
-    def __init__(self,first_name,email,password):
+    def __init__(self,name,email,password):
 
         """ the init method helps in defining properties of our objects"""
-        self.first_name = first_name
+        self.name = name
         self.email = email
         self.password = password
 
@@ -25,18 +25,18 @@ class User:
         User.list_of_users.append(self)
 
     @classmethod
-    def user_exists(cls,first_name):
+    def user_exists(cls,name):
         '''
         Method that checks if a user exists from the list_of_users
         '''
         for user in cls.list_of_users:
-            if (user.first_name == first_name):
+            if (user.name == name):
                 return True
         return False
     @classmethod
-    def user_exists_by_email(cls,email):
+    def authenticate_password(cls,password):
         for user in cls.list_of_users:
-            if (user.email == email):
+            if (user.password == password):
                 return True
         return False
 

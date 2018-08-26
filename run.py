@@ -3,11 +3,11 @@ from password_manager import User
 from password_manager import Credential
 import datetime
 
-def create_user(fname,email,password):
+def create_user(name,email,password):
     '''
     This method allows the creation of new user accounts
     '''
-    new_user = User(fname,email,password)
+    new_user = User(name,email,password)
     return new_user
 
 def save_user(user):
@@ -15,15 +15,15 @@ def save_user(user):
     Function that saves the created user to the list_of_users
     '''
     User.save_user(user)
-def authenticate_user(fname):
+def authenticate_user(name):
     '''
     Function that authenticates if a user has a user account
     '''
-    confirm_user = User.user_exists(fname)
+    confirm_user = User.user_exists(name)
     return confirm_user
-def authenticate_by_email(email):
-    confirm_user1 = User.user_exists_by_email(email)
-    return confirm_user1
+def authenticate_user_password(password):
+    authent_pass = User.authenticate_password(password)
+    return authent_pass
 
 def make_password():
     '''
@@ -76,7 +76,8 @@ def copy_password(account_name):
 
 
 def main():
-    print("Hello and Welcome to your Password Locker.")
+    print("")
+    print("*_*_*_*_*_*_*_*_*_*_*  Hello and Welcome to your Password Locker *_*_*_*_*_*_*_*_*_*_*")
 
     while True:
         print("\n")
@@ -86,15 +87,15 @@ def main():
 
         if short_code == 'cu':
             print("Create an Account to use the Password Locker App")
-            first_name = input("Enter your first name: ").strip()
+            user_name = input("Enter username: ").strip()
             email = input("Enter your email: ").strip()
             password = input("Enter your password: ").strip()
             confirm_password = input("Confrim password: ").strip()
             if password == confirm_password:
-                save_user(create_user(first_name, email, password))
+                save_user(create_user(user_name, email, password))
                 print("")
-                print(f"New Account, {first_name} with {email} using password: {password} created on {datetime.datetime.now()} ")
-                print(f"{first_name}, you can now proceed to login and save your credentials")
+                print(f"New Account, {user_name} with email {email} using password: {password} created on {datetime.datetime.now()} ")
+                print(f"{user_name}, you can now proceed to login and save your credentials")
             else:
                 print("***Your passwords do not match. Please try again.***")
 
@@ -102,11 +103,12 @@ def main():
         elif short_code == "lg":
             print("*"*40)
             print("Enter details to access your account")
-            user_name = input("Enter first name: ").strip()
+            user_name = input("Enter username: ").strip()
             password = str(input("Enter password: "))
             user_exists = authenticate_user(user_name)
+            confirm_pwd = authenticate_user_password(password)
     
-            if user_exists == True:
+            if user_exists == True and confirm_pwd == True:
                 print(" ")
                 print(f"Logged in as {user_name}.")
                 print(" ")

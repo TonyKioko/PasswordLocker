@@ -2,7 +2,7 @@
 #### Password Locker app created as an Independent Project on 24/08/2018
 #### Author: **Tony Kioko Munywoki**
 ## Description
-Password Locker is a python application that allows users save all your passwords and usernames for various account. The app runs in the terminal and user interacts with app through short codes.
+Password Locker is a python application that allows users save passwords and usernames for various account. The app runs in the terminal and user interacts with app through short codes.
 ## Specifications
 * Create/Register an account to use the app
 * Log in using your details
