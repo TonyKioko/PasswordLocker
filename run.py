@@ -1,7 +1,8 @@
 #!/usr/bin/env python3.6
+import datetime
 from password_manager import User
 from password_manager import Credential
-import datetime
+
 
 def create_user(name,email,password):
     '''
@@ -94,7 +95,7 @@ def main():
             if password == confirm_password:
                 save_user(create_user(user_name, email, password))
                 print("")
-                print(f"New Account, {user_name} with email {email} using password: {password} created on {datetime.datetime.now()} ")
+                print(f"New Account, for user {user_name} with email {email} using password: {password} created on {datetime.datetime.now()} ")
                 print(f"{user_name}, you can now proceed to login and save your credentials")
             else:
                 print("***Your passwords do not match. Please try again.***")
@@ -113,8 +114,9 @@ def main():
                 print(f"Logged in as {user_name}.")
                 print(" ")
                 while True:
-                    print('Use the shortcodes: \n cc-Create new Credential ||  sc-Show Your Saved Credentials \n cp-Copy to Password   ||  lu-Logout')
-                    print("*_"*40)
+                    print('Use the shortcodes: cc-Create new Credential |  sc-Show Your Saved Credentials | cp- to Copy Password   |  lu-Logout')
+                    print("*_"*64)
+                    print("")
                     short_code = input("Select choice to proceed: ").lower()
                     if short_code == "lu":
                         print(" ")
@@ -127,7 +129,8 @@ def main():
                         login_name = input("Enter login name on website: ").strip()
                         while True:
                             print("")
-                            print("Password Options: \n 1-enter own password | 2-Let us generate a password for you | q-quit")
+                            print("Password Options:  1 -enter own password | 2 -Let us generate a password for you | q -quit")
+                            print("")
                             pass_code = str(input("Enter an option: ")).lower().strip()
                             if pass_code == "1":
                                 print(" ")

@@ -7,7 +7,7 @@ class User:
     """
     Class that generates new instances of users
     """
-    # pass
+    
     list_of_users = [] # Empty list of users
 
     def __init__(self,name,email,password):
@@ -19,7 +19,7 @@ class User:
 
     def save_user(self):
         '''
-        save_user method saves contact objects into list_of_users
+        save_user function saves user objects into list_of_users
         '''
 
         User.list_of_users.append(self)
@@ -35,6 +35,9 @@ class User:
         return False
     @classmethod
     def authenticate_password(cls,password):
+        '''
+        Method that authenticates the user's password
+        '''
         for user in cls.list_of_users:
             if (user.password == password):
                 return True
