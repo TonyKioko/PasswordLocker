@@ -26,6 +26,11 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user.save_user() # saving the new user
         self.assertEqual(len(User.list_of_users),1)
+    def tearDown(self):
+        '''
+        tearDown method that cleans up the list_of_users after each test case has run.
+        '''
+        User.list_of_users = []
     def test_user_exists(self):
         '''
         test_user_exists test case to test if the user exists in the
@@ -35,6 +40,16 @@ class TestUser(unittest.TestCase):
         self.new_user.save_user()
         user_exists =  User.user_exists("Tony")
         self.assertTrue(user_exists)
+
+    def test_authenticate_password(self):
+        '''
+        test_authenticate_password test case to test if the password match
+        '''
+        self.new_user = User("Tony","tony@abc.com","abc123")
+        self.new_user.save_user()
+        saved_password =  User.authenticate_password("abc123")
+        self.assertTrue(saved_password)
+
 
 
 
