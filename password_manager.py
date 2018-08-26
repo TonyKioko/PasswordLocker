@@ -5,25 +5,31 @@ import pyperclip
 
 class User:
     # pass
-    user_list = []
-    def __init__(self,first_name,last_name,password):
+    list_of_users = []
+    def __init__(self,first_name,email,password):
         self.first_name = first_name
-        self.last_name = last_name
+        self.email = email
         self.password = password
 
     def save_user(self):
-        User.user_list.append(self)
+        User.list_of_users.append(self)
 
     @classmethod
     def user_exists(cls,first_name):
-        for user in cls.user_list:
-            if user.first_name == first_name:
+        for user in cls.list_of_users:
+            if (user.first_name == first_name):
+                return True
+        return False
+    @classmethod
+    def user_exists_by_email(cls,email):
+        for user in cls.list_of_users:
+            if (user.email == email):
                 return True
         return False
 
 class Credential:
 
-    credentials_list = []
+    list_of_credentials = []
     # @classmethod
     # def user_exists(cls,first_name):
     #     for user in cls.user_list:
@@ -42,7 +48,7 @@ class Credential:
         self.user_name = user_name
         self.account_password = account_password
     def save_credentials(self):
-        Credential.credentials_list.append(self)
+        Credential.list_of_credentials.append(self)
 
     def automate_password(chars=string.ascii_letters + string.digits):
 
@@ -50,21 +56,21 @@ class Credential:
         auto_password = ''.join(random.choice(chars) for i in range(length))
         return auto_password
     def delete_credentials(self):
-        Credential.credentials_list.remove(self)
+        Credential.list_of_credentials.remove(self)
     @classmethod
     def find_by_website(cls,account_name):
-        for credential in cls.credentials_list:
+        for credential in cls.list_of_credentials:
             if credential.account_name == account_name:
                 return credential
     @classmethod
     def credential_exists(cls,account_name):
-        for credential in cls.credentials_list:
+        for credential in cls.list_of_credentials:
             if credential.account_name == account_name:
                 return True
         return False
     @classmethod
     def display_all_credentials(cls):
-        return cls.credentials_list
+        return cls.list_of_credentials
     @classmethod
     def copy_password(cls,account_name):
         credential_found = Credential.find_by_website(account_name)

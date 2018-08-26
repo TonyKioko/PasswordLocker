@@ -3,8 +3,8 @@ from password_manager import User
 from password_manager import Credential
 import datetime
 
-def create_user(fname,lname,password):
-    new_user = User(fname,lname,password)
+def create_user(fname,email,password):
+    new_user = User(fname,email,password)
     return new_user
 
 def save_user(user):
@@ -51,13 +51,13 @@ def main():
         if short_code == 'cu':
             print("Create an Account to use the Password Locker App")
             first_name = input("Enter your first name: ").strip()
-            last_name = input("Enter your last name: ").strip()
+            email = input("Enter your email: ").strip()
             password = input("Enter your password: ").strip()
             confirm_password = input("Confrim password: ").strip()
             if password == confirm_password:
-                save_user(create_user(first_name, last_name, password))
+                save_user(create_user(first_name, email, password))
                 print("")
-                print(f"New Account, {first_name} {last_name} using password: {password} created on {datetime.datetime.now()} ")
+                print(f"New Account, {first_name} with {email} using password: {password} created on {datetime.datetime.now()} ")
                 print(f"{first_name}, you can now proceed to login and save your credentials")
             else:
                 print("***Your passwords do not match. Please try again.***")
@@ -70,7 +70,7 @@ def main():
             password = str(input("Enter password: "))
             user_exists = authenticate_user(user_name)
 
-            if user_exists:
+            if user_exists == True:
                 print(" ")
                 print(f"Logged in as {user_name}.")
                 print(" ")
@@ -104,7 +104,7 @@ def main():
                                 print("Please enter a valid choice")
                         save_credential(create_credential(website_name,login_name,secret_password))
                         print("")
-                        print(f"*****Credential Saved For: Website: {website_name}, login name: {login_name}, with Password: {secret_password}*****")
+                        print(f"*****  Credential Saved For: Website: {website_name}, login name: {login_name}, with Password: {secret_password}   *****")
                         print("")
                     elif short_code == "sc":
                         print(" ")
@@ -121,7 +121,7 @@ def main():
                         print(" ")
                         selected_website = input("Select website for password to be copied: ").strip()
                         copy_password(selected_website)
-                        
+
                     else:
                         print("Please selected a valid code to proceed")
                 else:
