@@ -23,6 +23,9 @@ def authenticate_user(name):
     confirm_user = User.user_exists(name)
     return confirm_user
 def authenticate_user_password(password):
+    '''
+    Function that authenticates the user password
+    '''
     authent_pass = User.authenticate_password(password)
     return authent_pass
 
